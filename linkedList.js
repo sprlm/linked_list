@@ -80,32 +80,42 @@ const linkedListFactory = () => {
     }
   }
 
-  return { append, prepend, size, head, tail, at, pop };
+  function find(value) {
+    if (this.head === null) {
+      return null;
+    } else {
+      let currentNode = this.head;
+      let index = 0;
+      
+      while (currentNode.nextNode !== null) {
+        if (currentNode.value === value) {
+          return index;
+        }
+
+        currentNode = currentNode.nextNode;
+        index++;
+      }
+
+      if (currentNode.value === value) {
+        return index;
+      } else {
+        return null;
+      }
+    }
+  }
+
+  return { append, prepend, size, head, tail, at, pop, find };
 };
 
 const list = linkedListFactory();
 
-console.log(list.size);
+console.log(list.find('anything'));
 
-list.append('test');
-list.append('test2');
+list.append('apple');
+list.append('banana');
+list.append('carrot');
 
-console.log(list.size);
-
-list.prepend('prependTest');
-
-console.log(list.size);
-
-console.log(list.head);
-
-console.log(list.tail());
-
-console.log(list.at(0));
-console.log(list.at(1));
-console.log(list.at(2));
-console.log(list.at(3));
-
-list.pop();
-
-console.log(list.tail());
-console.log(list.head);
+console.log(list.find('apple'));
+console.log(list.find('banana'));
+console.log(list.find('carrot'));
+console.log(list.find('dragonfruit'));
