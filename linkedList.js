@@ -19,13 +19,24 @@ const linkedListFactory = () => {
     }
   };
 
+  const prepend = (value) => {
+    if (head === null) {
+      head = nodeFactory(value, null);
+    } else {
+      let newNode = nodeFactory(value, head);
+
+      head = newNode;
+    }
+  };
+
   const getHead = () => console.log(head);
 
-  return { append, getHead };
+  return { append, prepend, getHead };
 };
 
 const list = linkedListFactory();
 list.append('test');
 list.append('test2');
+list.prepend('prependTest')
 
 list.getHead();
