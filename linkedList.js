@@ -34,7 +34,21 @@ const linkedListFactory = () => {
     this.size += 1;
   }
 
-  return { append, prepend, size, head };
+  function tail() {
+    if (this.head === null) {
+      return null;
+    } else {
+      let currentNode = this.head;
+      
+      while (currentNode.nextNode !== null) {
+        currentNode = currentNode.nextNode;
+      }
+
+      return currentNode;
+    }
+  }
+
+  return { append, prepend, size, head, tail };
 };
 
 const list = linkedListFactory();
@@ -51,3 +65,5 @@ list.prepend('prependTest');
 console.log(list.size);
 
 console.log(list.head);
+
+console.log(list.tail());
