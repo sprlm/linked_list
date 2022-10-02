@@ -87,7 +87,7 @@ const linkedListFactory = () => {
       let currentNode = this.head;
       let index = 0;
       
-      while (currentNode.nextNode !== null) {
+      while (currentNode !== null) {
         if (currentNode.value === value) {
           return index;
         }
@@ -96,26 +96,33 @@ const linkedListFactory = () => {
         index++;
       }
 
-      if (currentNode.value === value) {
-        return index;
-      } else {
-        return null;
-      }
+      return null;
     }
   }
 
-  return { append, prepend, size, head, tail, at, pop, find };
+  function toString() {
+    if (this.head === null) {
+      return null;
+    } else {
+      let currentNode = this.head;
+      let output = '';
+      
+      while (currentNode !== null) {
+        output = output.concat(`${currentNode.value} => `)
+        currentNode = currentNode.nextNode;
+      }
+
+      return output.concat('null');
+    }
+  }
+
+  return { append, prepend, size, head, tail, at, pop, find, toString };
 };
 
 const list = linkedListFactory();
-
-console.log(list.find('anything'));
 
 list.append('apple');
 list.append('banana');
 list.append('carrot');
 
-console.log(list.find('apple'));
-console.log(list.find('banana'));
-console.log(list.find('carrot'));
-console.log(list.find('dragonfruit'));
+console.log(list.toString());
