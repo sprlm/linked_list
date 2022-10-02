@@ -48,7 +48,21 @@ const linkedListFactory = () => {
     }
   }
 
-  return { append, prepend, size, head, tail };
+  function at(index) {
+    if (this.head === null || index >= this.size || index < 0) {
+      return null;
+    } else {
+      let currentNode = this.head;
+
+      for (let i = 0; i < index; i++) {
+        currentNode = currentNode.nextNode;
+      }
+      
+      return currentNode;
+    }
+  }
+
+  return { append, prepend, size, head, tail, at };
 };
 
 const list = linkedListFactory();
@@ -67,3 +81,8 @@ console.log(list.size);
 console.log(list.head);
 
 console.log(list.tail());
+
+console.log(list.at(0));
+console.log(list.at(1));
+console.log(list.at(2));
+console.log(list.at(3));
