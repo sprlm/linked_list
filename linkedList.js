@@ -7,10 +7,10 @@ const linkedListFactory = () => {
   let size = 0;
 
   function append(value) {
-    if (head === null) {
-      head = nodeFactory(value, null);
+    if (this.head === null) {
+      this.head = nodeFactory(value, null);
     } else {
-      let currentNode = head;
+      let currentNode = this.head;
       
       while (currentNode.nextNode !== null) {
         currentNode = currentNode.nextNode;
@@ -23,20 +23,18 @@ const linkedListFactory = () => {
   }
 
   function prepend(value) {
-    if (head === null) {
-      head = nodeFactory(value, null);
+    if (this.head === null) {
+      this.head = nodeFactory(value, null);
     } else {
-      let newNode = nodeFactory(value, head);
+      let newNode = nodeFactory(value, this.head);
 
-      head = newNode;
+      this.head = newNode;
     }
 
     this.size += 1;
   }
 
-  const getHead = () => console.log(head);
-
-  return { append, prepend, size, getHead };
+  return { append, prepend, size, head };
 };
 
 const list = linkedListFactory();
@@ -52,4 +50,4 @@ list.prepend('prependTest');
 
 console.log(list.size);
 
-list.getHead();
+console.log(list.head);
